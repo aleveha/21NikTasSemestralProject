@@ -1,43 +1,47 @@
 package Uloha_21;
 
 public class MatrixTransformation {
-    public static Data data = new Data();
-
     public static void startProgram() {
-        getDataFromUser(data);
-        while (data.getArraySize() > 0) {
-            if (data.getArraySize() == 1) {
+        InputData inputData = new InputData();
+
+        getData(inputData);
+        while (inputData.getMatrixSize() > 0) {
+            if (isOneDimension(inputData)) {
                 answerMessage(360);
             } else {
-                calculateTransformation(data);
-                answerMessage(data.getDegree());
+                calculateTransformation(inputData);
+                answerMessage(inputData.getDegree());
             }
-            getDataFromUser(data);
+            getData(inputData);
         }
     }
 
-    private static void getDataFromUser(Data data) {
-        ReadingData.getArraySizeFromUser(data);
+    private static void getData(InputData inputData) {
+        DataReader.getArraySizeFromUser(inputData);
 
-        if (data.getArraySize() < 1) return;
+        if (inputData.getMatrixSize() < 1) return;
 
         newLine();
 
         System.out.println("Prvni matice:");
-        data.setFirstArray(ReadingData.getMatrixFromUser(data));
+        inputData.setFirstMatrix(DataReader.getMatrixFromUser(inputData));
         newLine();
 
         System.out.println("Druha matice:");
-        data.setSecondArray(ReadingData.getMatrixFromUser(data));
+        inputData.setSecondMatrix(DataReader.getMatrixFromUser(inputData));
         newLine();
     }
 
-    private static void calculateTransformation(Data data) {
-        DataProcessing.rotation(data);
+    private static void calculateTransformation(InputData inputData) {
+        DataProcessing.rotation(inputData);
     }
 
     private static void answerMessage(int degree) {
-        System.out.printf("Rotace %d\n", degree);
+        System.out.printf("Rotace %s\n\n", degree <= 270 || degree == 360 ? degree : "zadna neni");
+    }
+
+    private static boolean isOneDimension (InputData inputData) {
+        return inputData.getMatrixSize() == 1 && inputData.getFirstMatrix()[0][0] == inputData.getSecondMatrix()[0][0];
     }
 
     private static void newLine() {

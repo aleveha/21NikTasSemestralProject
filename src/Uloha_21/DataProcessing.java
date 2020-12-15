@@ -1,26 +1,26 @@
 package Uloha_21;
 
 public class DataProcessing {
-    public static void rotation(Data data) {
-        int[][] array1 = data.getFirstArray();
-        int[][] array2 = data.getSecondArray();
+    public static void rotation(InputData inputData) {
+        int[][] rotatingMatrix = inputData.getFirstMatrix();
+        int[][] comparedMatrix = inputData.getSecondMatrix();
         int degree = 0;
 
         do {
-            if (checkMatrix(array1, array2)) {
-                data.setDegree(degree);
-                return;
-            }
+            inputData.setDegree(degree);
+            if (checkMatrix(rotatingMatrix, comparedMatrix)) return;
             degree += 90;
-            Matrix.rotateMatrix(array1);
+            InputData.rotateMatrix(rotatingMatrix);
         } while (degree <= 270);
+
+        if (degree == 360) inputData.setDegree(400);
     }
 
-    public static boolean checkMatrix(int[][] array1, int[][] array2) {
+    public static boolean checkMatrix(int[][] rotatingMatrix, int[][] comparedMatrix) {
         boolean rotation = true;
-        for(int i = 0; i < array1.length; i++) {
-            for (int k = 0; k < array1.length; k++) {
-                if (array1[i][k] != array2[i][k]) {
+        for(int i = 0; i < rotatingMatrix.length; i++) {
+            for (int k = 0; k < rotatingMatrix.length; k++) {
+                if (rotatingMatrix[i][k] != comparedMatrix[i][k]) {
                     rotation = false;
                     break;
                 }
