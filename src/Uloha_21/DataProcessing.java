@@ -1,6 +1,9 @@
 package Uloha_21;
 
 public class DataProcessing {
+    /**
+     * @param inputData
+     */
     public static void rotation(InputData inputData) {
         int[][] rotatingMatrix = inputData.getFirstMatrix();
         int[][] comparedMatrix = inputData.getSecondMatrix();
@@ -16,6 +19,11 @@ public class DataProcessing {
         if (degree == 360) inputData.setDegree(400);
     }
 
+    /**
+     * @param rotatingMatrix
+     * @param comparedMatrix
+     * @return
+     */
     public static boolean checkMatrix(int[][] rotatingMatrix, int[][] comparedMatrix) {
         boolean rotation = true;
         for(int i = 0; i < rotatingMatrix.length; i++) {

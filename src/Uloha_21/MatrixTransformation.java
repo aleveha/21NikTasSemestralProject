@@ -16,6 +16,9 @@ public class MatrixTransformation {
         }
     }
 
+    /**
+     * @param inputData
+     */
     private static void getData(InputData inputData) {
         DataReader.getArraySizeFromUser(inputData);
 
@@ -32,14 +35,24 @@ public class MatrixTransformation {
         newLine();
     }
 
+    /**
+     * @param inputData
+     */
     private static void calculateTransformation(InputData inputData) {
         DataProcessing.rotation(inputData);
     }
 
+    /**
+     * @param degree
+     */
     private static void answerMessage(int degree) {
         System.out.printf("Rotace %s\n\n", degree <= 270 || degree == 360 ? degree : "zadna neni");
     }
 
+    /**
+     * @param inputData
+     * @return
+     */
     private static boolean isOneDimension (InputData inputData) {
         return inputData.getMatrixSize() == 1 && inputData.getFirstMatrix()[0][0] == inputData.getSecondMatrix()[0][0];
     }
