@@ -21,12 +21,10 @@ public class DataReader {
     public static int[][] getMatrixFromUser (InputData inputData) {
         int arraySize = inputData.getMatrixSize();
         int[][] array = new int[arraySize][arraySize];
-        String[] arrayLine;
 
         for (int i = 0; i < arraySize; i++) {
-            arrayLine = sc.nextLine().split(" ");
-            for (int k = 0; k < arrayLine.length; k++) {
-                array[i][k] = Integer.parseInt(arrayLine[k]);
+            for (int k = 0; k < arraySize; k++) {
+                array[i][k] = sc.nextInt();
             }
         }
 
