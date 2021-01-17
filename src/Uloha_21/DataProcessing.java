@@ -9,16 +9,13 @@ public class DataProcessing {
         int[][] comparedMatrix = inputData.getSecondMatrix();
         int degree = 0;
 
-        do {
-            if (degree == 0) inputData.setDegree(degree);
-            else inputData.setDegree(360 - degree);
-
-            if (checkMatrix(rotatingMatrix, comparedMatrix)) return;
+        for (int i = 0; i < 4; i++) {
+            if (checkMatrix(rotatingMatrix, comparedMatrix)) {
+                inputData.setDegree(degree == 0 ? degree : 360 - degree);
+            }
             degree += 90;
             rotateMatrix(rotatingMatrix);
-        } while (degree <= 270);
-
-        if (degree == 360) inputData.setDegree(400);
+        }
     }
 
     /**

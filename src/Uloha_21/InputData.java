@@ -1,10 +1,12 @@
 package Uloha_21;
 
+import java.util.ArrayList;
+
 public class InputData {
     private int matrixSize;
     private int[][] firstMatrix;
     private int[][] secondMatrix;
-    private int degree;
+    private ArrayList<Integer> degree = new ArrayList<Integer>();
 
     public int getMatrixSize() {
         return matrixSize;
@@ -27,10 +29,10 @@ public class InputData {
         this.secondMatrix = secondArray;
     }
 
-    public int getDegree() {
+    public ArrayList<Integer> getDegree() {
         return degree;
     }
     public void setDegree(int degree) {
-        this.degree = degree;
+        this.degree.add(degree);
     }
 }

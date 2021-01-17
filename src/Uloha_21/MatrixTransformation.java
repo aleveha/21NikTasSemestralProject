@@ -1,17 +1,16 @@
 package Uloha_21;
 
+import java.util.ArrayList;
+import java.util.Collections;
+
 public class MatrixTransformation {
     public static void startProgram() {
         InputData inputData = new InputData();
 
         getData(inputData);
         while (inputData.getMatrixSize() > 0) {
-            if (isOneDimension(inputData)) {
-                answerMessage(360);
-            } else {
-                calculateTransformation(inputData);
-                answerMessage(inputData.getDegree());
-            }
+            calculateTransformation(inputData);
+            answerMessage(inputData.getDegree());
             getData(inputData);
         }
     }
@@ -45,16 +44,18 @@ public class MatrixTransformation {
     /**
      * @param degree
      */
-    private static void answerMessage(int degree) {
-        System.out.printf("Rotace %s\n\n", degree <= 270 || degree == 360 ? degree : "zadna neni");
-    }
-
-    /**
-     * @param inputData
-     * @return
-     */
-    private static boolean isOneDimension (InputData inputData) {
-        return inputData.getMatrixSize() == 1 && inputData.getFirstMatrix()[0][0] == inputData.getSecondMatrix()[0][0];
+    private static void answerMessage(ArrayList<Integer> degree) {
+        if (degree.isEmpty()) {
+            System.out.println("Neni rotace");
+        } else {
+            Collections.sort(degree);
+            System.out.print("Rotace ");
+            for (int dgr : degree) {
+                System.out.print(dgr + " ");
+            }
+            System.out.println();
+        }
+        degree.clear();
     }
 
     private static void newLine() {
